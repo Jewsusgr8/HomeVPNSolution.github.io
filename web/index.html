@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HomeVPN Solution: a self-hosted WireGuard VPN engineering project documenting architecture, troubleshooting, and migration to dedicated hardware.">
+  <title>HomeVPN Solution | Engineering Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav" aria-label="Main navigation">
+      <a class="brand" href="#home"><span class="brand-mark">&gt;_</span> HomeVPN<span class="brand-accent">Solution</span></a>
+      <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#roadmap">Roadmap</a>
+        <a class="nav-github" href="https://github.com/HomeVPNSolution/HomeVPNSolution.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero container">
+      <p class="eyebrow"><span class="status-dot"></span> PERSONAL INFRASTRUCTURE PROJECT</p>
+      <h1>Building a VPN.<br><span class="gradient-text">Owning the infrastructure.</span></h1>
+      <p class="hero-copy">A real-world engineering project documenting how I built a self-hosted WireGuard VPN for secure travel connectivity, then redesigned it for better availability.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#overview">Explore the project <span aria-hidden="true">→</span></a>
+        <a class="button button-secondary" href="https://github.com/HomeVPNSolution/HomeVPNSolution.github.io" target="_blank" rel="noopener noreferrer">View source ↗</a>
+      </div>
+      <p class="hero-note">No monthly VPN subscription required. (No offense, NordVPN. I still love you.)</p>
+    </section>
+
+    <section id="overview" class="section container">
+      <div class="section-heading"><p class="eyebrow">01 / PROJECT OVERVIEW</p><h2>From experiment to reliable infrastructure</h2></div>
+      <p class="section-intro">The original goal was simple: route my devices' traffic through my home internet connection while traveling. The first solution worked... but it depended on a laptop I also wanted to take on vacation to play WoW Forever. That constraint drove a redesign around dedicated hardware.</p>
+      <div class="feature-grid">
+        <article class="panel"><div class="panel-icon">⌁</div><h3>Encrypted tunneling</h3><p>WireGuard provides an encrypted connection between a GL.iNet travel router and a VPN endpoint at home.</p></article>
+        <article class="panel"><div class="panel-icon">◇</div><h3>Network engineering</h3><p>Routing, NAT, firewall configuration, dynamic DNS, and remote troubleshooting are central to the project.</p></article>
+        <article class="panel"><div class="panel-icon">↻</div><h3>Improving availability</h3><p>The next phase moves the VPN endpoint from a general-purpose Kali Linux laptop to a dedicated Brume 2 gateway.</p></article>
+      </div>
+    </section>
+
+    <section id="architecture" class="section container">
+      <div class="section-heading"><p class="eyebrow">02 / ARCHITECTURE</p><h2>How the connection works</h2></div>
+      <div class="architecture panel">
+        <div class="network-flow" role="img" aria-label="Travel devices connect to Slate AX router, which creates an encrypted WireGuard tunnel over the internet to a home VPN server, which routes traffic through the home internet connection.">
+          <div class="network-node"><span class="node-icon">▣</span><strong>Travel devices</strong><small>Laptop / Phone</small></div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="network-node"><span class="node-icon">▤</span><strong>Slate AX</strong><small>WireGuard client</small></div>
+          <span class="flow-arrow encrypted" aria-hidden="true">⇢</span>
+          <div class="network-node"><span class="node-icon">⌂</span><strong>Home endpoint</strong><small>VPN server + NAT</small></div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="network-node"><span class="node-icon">◎</span><strong>Internet</strong><small>Home connection</small></div>
+        </div>
+        <p class="diagram-note">The encrypted tunnel runs between the travel router and home VPN endpoint. The original endpoint used Kali Linux; migration to the Brume 2 is planned.</p>
+      </div>
+      <div class="tech-list" aria-label="Technologies used"><span>WireGuard</span><span>Kali Linux</span><span>GL.iNet Slate AX</span><span>GL.iNet Brume 2</span><span>iptables</span><span>DuckDNS</span><span>systemd</span></div>
+    </section>
+
+    <section id="roadmap" class="section container">
+      <div class="section-heading"><p class="eyebrow">03 / PROJECT ROADMAP</p><h2>Build. Test. Improve.</h2></div>
+      <div class="timeline">
+        <article class="timeline-item"><div class="timeline-marker completed" aria-hidden="true">✓</div><div class="timeline-content"><span class="phase-label">PHASE 01 <span class="status completed-text">COMPLETED</span></span><h3>Proof of concept</h3><p>Deployed a WireGuard server on Kali Linux, configured the Slate AX travel router, set up forwarding and dynamic DNS, and validated remote connectivity from a hotel.</p></div></article>
+        <article class="timeline-item"><div class="timeline-marker pending" aria-hidden="true">2</div><div class="timeline-content"><span class="phase-label">PHASE 02 <span class="status pending-text">PLANNED / IN PROGRESS</span></span><h3>Dedicated VPN gateway</h3><p>Replace the laptop-dependent server with a GL.iNet Brume 2, then verify connectivity, routing, recovery after reboot, and long-term operation.</p><a class="inline-link" href="https://www.gl-inet.com/en-us/products/gl-mt2500" target="_blank" rel="noopener noreferrer">About the Brume 2 ↗</a></div></article>
+        <article class="timeline-item"><div class="timeline-marker pending" aria-hidden="true">3</div><div class="timeline-content"><span class="phase-label">PHASE 03 <span class="status pending-text">FUTURE</span></span><h3>Documentation and validation</h3><p>Publish sanitized configuration examples, troubleshooting notes, network diagrams, and measured reliability results.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section container"><div class="security-note"><span class="security-icon" aria-hidden="true">◈</span><div><h3>Security-first documentation</h3><p>All examples are sanitized. Private keys, credentials, real VPN endpoints, and sensitive network details are not published. This site is documentation—not a live VPN control panel.</p></div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-content"><span>© <span id="year">2026</span> HomeVPN Solution</span><span>Built with HTML + CSS · Hosted on GitHub Pages</span></div></footer>
+</body>
+</html>
