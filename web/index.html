@@ -15,7 +15,7 @@
         <a href="#overview">Overview</a>
         <a href="#architecture">Architecture</a>
         <a href="#roadmap">Roadmap</a>
-        <a class="nav-github" href="https://github.com/HomeVPNSolution/HomeVPNSolution.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a class="nav-github" href="https://github.com/Jewsusgr8/HomeVPNSolution.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       </div>
     </nav>
   </header>
@@ -34,7 +34,7 @@
 
     <section id="overview" class="section container">
       <div class="section-heading"><p class="eyebrow">01 / PROJECT OVERVIEW</p><h2>From experiment to reliable infrastructure</h2></div>
-      <p class="section-intro">The original goal was simple: route my devices' traffic through my home internet connection while traveling. The first solution worked... but it depended on a laptop I also wanted to take on vacation to play WoW Forever. That constraint drove a redesign around dedicated hardware.</p>
+      <p class="section-intro">The original goal was simple: route my devices' traffic through my home internet connection while traveling. The first solution worked... my data was encrypted and not visible on my hotel's public wifi, but it depended on a laptop I also wanted to take on vacation to play WoW Forever. That constraint drove a redesign around dedicated hardware.</p>
       <div class="feature-grid">
         <article class="panel"><div class="panel-icon">⌁</div><h3>Encrypted tunneling</h3><p>WireGuard provides an encrypted connection between a GL.iNet travel router and a VPN endpoint at home.</p></article>
         <article class="panel"><div class="panel-icon">◇</div><h3>Network engineering</h3><p>Routing, NAT, firewall configuration, dynamic DNS, and remote troubleshooting are central to the project.</p></article>
@@ -44,17 +44,57 @@
 
     <section id="architecture" class="section container">
       <div class="section-heading"><p class="eyebrow">02 / ARCHITECTURE</p><h2>How the connection works</h2></div>
-      <div class="architecture panel">
-        <div class="network-flow" role="img" aria-label="Travel devices connect to Slate AX router, which creates an encrypted WireGuard tunnel over the internet to a home VPN server, which routes traffic through the home internet connection.">
-          <div class="network-node"><span class="node-icon">▣</span><strong>Travel devices</strong><small>Laptop / Phone</small></div>
-          <span class="flow-arrow" aria-hidden="true">→</span>
-          <div class="network-node"><span class="node-icon">▤</span><strong>Slate AX</strong><small>WireGuard client</small></div>
-          <span class="flow-arrow encrypted" aria-hidden="true">⇢</span>
-          <div class="network-node"><span class="node-icon">⌂</span><strong>Home endpoint</strong><small>VPN server + NAT</small></div>
-          <span class="flow-arrow" aria-hidden="true">→</span>
-          <div class="network-node"><span class="node-icon">◎</span><strong>Internet</strong><small>Home connection</small></div>
-        </div>
-        <p class="diagram-note">The encrypted tunnel runs between the travel router and home VPN endpoint. The original endpoint used Kali Linux; migration to the Brume 2 is planned.</p>
+      <p class="eyebrow">Interactive Experience, click on the buttons below</p>
+      <div class="architecture panel" id="architecture-panel">
+
+        <div class="architecture-layout">
+
+          <div class="network-flow" role="group" aria-label="VPN network architecture">
+              <!-- KEEP all your existing buttons and arrows here -->
+
+            <button type="button" class="network-node" data-node="devices">
+                <span class="node-icon">▣</span>
+                <strong>Travel devices</strong>
+                <small>Laptop / Phone</small>
+            </button>
+
+            <span class="flow-arrow" aria-hidden="true">→</span>
+
+            <button type="button" class="network-node"data-node="slate">
+                <span class="node-icon">▤</span>
+                <strong>Slate AX</strong>
+                <small>WireGuard client</small>
+            </button>
+
+            <span class="flow-arrow encrypted" aria-hidden="true">⇢</span>
+
+            <button type="button" class="network-node"data-node="home">
+                <span class="node-icon">⌂</span>
+                <strong>Home endpoint</strong>
+                <small>VPN server + NAT</small>
+            </button>
+
+            <span class="flow-arrow" aria-hidden="true">→</span>
+
+            <button type="button" class="network-node" data-node="internet">
+                <span class="node-icon">🌐</span>
+                <strong>Internet</strong>
+                <small>Home connection</small>
+            </button>
+
+          </div>
+
+          <div class="architecture-details" id="architecture-details" hidden>
+              <button type="button" id="close-details" aria-label="Close details">✕</button>
+              <h3 id="details-title">Component details</h3>
+              <p id="node-details">Select a component.</p>
+          </div>
+
+    </div>
+
+</div>
+
+        <p class="diagram-note" id="node-details"> Click a network component to view its technical details. </p>
       </div>
       <div class="tech-list" aria-label="Technologies used"><span>WireGuard</span><span>Kali Linux</span><span>GL.iNet Slate AX</span><span>GL.iNet Brume 2</span><span>iptables</span><span>DuckDNS</span><span>systemd</span></div>
     </section>
@@ -72,5 +112,6 @@
   </main>
 
   <footer class="site-footer"><div class="container footer-content"><span>© <span id="year">2026</span> HomeVPN Solution</span><span>Built with HTML + CSS · Hosted on GitHub Pages</span></div></footer>
+  <script src="architecture.js"></script>
 </body>
 </html>
